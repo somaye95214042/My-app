@@ -1,0 +1,11 @@
+[type="radio"] + img {
+  cursor: pointer;
+}
+
+[type="radio"]:checked + img {
+  filter: brightness(40%) sepia(100%) hue-rotate(170deg) saturate(250%);
+  height: 35px;
+  padding: 10px;
+  border: 2px solid #222;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
