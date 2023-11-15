@@ -15,7 +15,6 @@ const Select2 = ({ Taboption, control }) => {
 
   return (
     <div style={{ minHeight: "100px" }}>
-        {console.log(defaultValue)}
       <div style={{ position: "relative", width: "20%", float: "left" }}>
         <p style={{ fontSize: "14px", color: "#23282d", fontWeight: "500" }}>
           {Taboption.label}
@@ -25,15 +24,13 @@ const Select2 = ({ Taboption, control }) => {
         <Controller
           name={Taboption.id}
           control={control}
-          defaultValue={defaultValue}
+          defaultValue={Taboption.options[0]}
           render={({ field }) => {
             return (
               <div style={{ width: "50%" }}>
                 <Select
                   {...field}
-                  isMulti
                   options={Taboption.options}
-                  className="basic-multi-select"
                   classNamePrefix="select"
                 />
               </div>

@@ -9,3 +9,11 @@
   border: 2px solid #222;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
+label.imageselect:first-child {
+  margin-left: 0 !important;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+        padding: 0!important;
+} 

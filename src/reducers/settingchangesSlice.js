@@ -7,7 +7,7 @@ const settingchangesSlice = createSlice({
     initialState,
     reducers: {
         settingsChanged: (state, action) => {
-            return state= action.payload;
+            return state= (action.payload);
         },
     }
 });

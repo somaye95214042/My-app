@@ -36,7 +36,17 @@ const RadioButton = ({ Taboption, control }) => {
               defaultValue={defaultValue}
               render={({ field }) => {
                 return (
-                  <label key={option.id} style={{ marginLeft: "20px" }}>
+                  <label
+                    key={option.id}
+                    style={{
+                      marginLeft: "20px",
+                      fontSize: "14px", 
+                      color: "#23282d", 
+                      fontWeight: "400",
+                      marginTop: "6px",
+                    }}
+                    className="imageselect"
+                  >
                     <input
                       {...field}
                       value={option.value}

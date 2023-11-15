@@ -1,10 +1,13 @@
+import * as React from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { useState } from "react";
 import { Controller } from "react-hook-form";
-import Select from "react-select";
 import { useSelector } from "react-redux";
 
-const Select2 = ({ Taboption, control }) => {
-  const settings = useSelector((state) => state.settings);
+const Toggle = ({ Taboption, control }) => {
   const settingchanges = useSelector((state) => state.settingchanges);
+  const settings = useSelector((state) => state.settings);
 
   const defaultValue =
     settingchanges[`${Taboption.id}`] !== undefined
@@ -13,9 +16,12 @@ const Select2 = ({ Taboption, control }) => {
       ? settings[`${Taboption.id}`]
       : Taboption.default;
 
+  const [counter, setCounter] = useState(defaultValue);
+
+  const handleChange = (e) => setCounter(e.currentTarget.value);
+
   return (
     <div style={{ minHeight: "100px" }}>
-        {console.log(defaultValue)}
       <div style={{ position: "relative", width: "20%", float: "left" }}>
         <p style={{ fontSize: "14px", color: "#23282d", fontWeight: "500" }}>
           {Taboption.label}
@@ -28,15 +34,25 @@ const Select2 = ({ Taboption, control }) => {
           defaultValue={defaultValue}
           render={({ field }) => {
             return (
-              <div style={{ width: "50%" }}>
-                <Select
-                  {...field}
-                  isMulti
-                  options={Taboption.options}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />
-              </div>
+              <ToggleButtonGroup
+                {...field}
+                value={counter}
+                color="primary"
+                exclusive
+                onChange={(e) => {
+                  handleChange(e);
+                  field.onChange(e);
+                }}
+                aria-label="Platform"
+              >
+                {Taboption.options.map((option) => {
+                  return (
+                    <ToggleButton key={option.id} value={option.value}>
+                      {option.label}
+                    </ToggleButton>
+                  );
+                })}
+              </ToggleButtonGroup>
             );
           }}
         />
@@ -55,4 +71,4 @@ const Select2 = ({ Taboption, control }) => {
   );
 };
 
-export default Select2;
+export default Toggle;

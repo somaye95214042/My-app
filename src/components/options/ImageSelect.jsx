@@ -36,7 +36,7 @@ const ImageSelect = ({ Taboption, control }) => {
               defaultValue={defaultValue}
               render={({ field }) => {
                 return (
-                  <label key={option.id} style={{ marginLeft: "20px" }}>
+                  <label key={option.id} style={{ marginLeft: "20px" }} className="imageselect">
                     <input
                       {...field}
                       value={option.value}

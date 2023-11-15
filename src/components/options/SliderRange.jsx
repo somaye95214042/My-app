@@ -1,21 +1,21 @@
 import { Controller } from "react-hook-form";
-import Select from "react-select";
 import { useSelector } from "react-redux";
 
-const Select2 = ({ Taboption, control }) => {
-  const settings = useSelector((state) => state.settings);
+import Slider from "@mui/material/Slider";
+
+const SliderRange = ({ Taboption, control }) => {
   const settingchanges = useSelector((state) => state.settingchanges);
+  const settings = useSelector((state) => state.settings);
 
   const defaultValue =
     settingchanges[`${Taboption.id}`] !== undefined
       ? settingchanges[`${Taboption.id}`]
       : settings[`${Taboption.id}`] !== undefined
       ? settings[`${Taboption.id}`]
-      : Taboption.default;
+      : JSON.parse(Taboption.default);
 
   return (
     <div style={{ minHeight: "100px" }}>
-        {console.log(defaultValue)}
       <div style={{ position: "relative", width: "20%", float: "left" }}>
         <p style={{ fontSize: "14px", color: "#23282d", fontWeight: "500" }}>
           {Taboption.label}
@@ -28,13 +28,15 @@ const Select2 = ({ Taboption, control }) => {
           defaultValue={defaultValue}
           render={({ field }) => {
             return (
-              <div style={{ width: "50%" }}>
-                <Select
+              <div style={{ width: "300px" }}>
+                <Slider
+                  sx={{
+                    width: 300,
+                    color: "success.main",
+                  }}
                   {...field}
-                  isMulti
-                  options={Taboption.options}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
+                  aria-label="Default"
+                  valueLabelDisplay="auto"
                 />
               </div>
             );
@@ -44,7 +46,7 @@ const Select2 = ({ Taboption, control }) => {
           style={{
             fontSize: "13px",
             color: "#999",
-            marginTop: "6px",
+            margin: "0",
             fontWeight: "400",
           }}
         >
@@ -55,4 +57,4 @@ const Select2 = ({ Taboption, control }) => {
   );
 };
 
-export default Select2;
+export default SliderRange;
